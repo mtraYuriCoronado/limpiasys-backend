@@ -1,9 +1,16 @@
 const Producto = require('../models/producto.model');
+const Categoria = require('../models/categoria.model'); // asegúrate de importar
 
 // GET
 exports.obtenerTodos = async (req, res) => {
   try {
-    const productos = await Producto.findAll();
+    const productos = await Producto.findAll({
+      include: {
+        model: Categoria,
+        as: 'categoria',
+        attributes: ['id', 'nombre'] // puedes agregar más si lo necesitas
+      }
+    });
     res.json(productos);
   } catch (error) {
     res.status(500).json({ error: 'Error al obtener productos' });

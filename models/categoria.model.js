@@ -16,3 +16,10 @@ const Categoria = sequelize.define('Categoria', {
 });
 
 module.exports = Categoria;
+
+const Producto = require('./producto.model');
+
+Categoria.hasMany(Producto, {
+  foreignKey: 'id_categoria',
+  as: 'productos'
+});

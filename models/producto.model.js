@@ -31,3 +31,12 @@ const Producto = sequelize.define('Producto', {
 });
 
 module.exports = Producto;
+
+
+const Categoria = require('./categoria.model');
+
+Producto.belongsTo(Categoria, {
+  foreignKey: 'id_categoria',
+  as: 'categoria'
+});
+
