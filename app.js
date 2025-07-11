@@ -2,6 +2,7 @@ const express = require('express');
 const cors = require('cors');
 const sequelize = require('./config/db');
 const productoRoutes = require('./routes/producto.routes');
+const categoriaRoutes = require('./routes/categoria.routes');
 
 const app = express();
 app.use(cors());
@@ -9,6 +10,8 @@ app.use(express.json());
 
 // Rutas
 app.use('/api/productos', productoRoutes);
+app.use('/api/categorias', categoriaRoutes);
+
 
 // Sincronizar base de datos
 sequelize.sync()
